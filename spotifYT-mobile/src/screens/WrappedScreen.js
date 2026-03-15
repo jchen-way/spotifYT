@@ -110,7 +110,19 @@ export default function WrappedScreen({ refreshToken }) {
       return;
     }
 
-    getWrappedStats().then(setStats).catch(console.error);
+    let active = true;
+
+    getWrappedStats()
+      .then((nextStats) => {
+        if (active) {
+          setStats(nextStats);
+        }
+      })
+      .catch(console.error);
+
+    return () => {
+      active = false;
+    };
   }, [isFocused, refreshToken]);
 
   const summary = stats?.summary || { total_plays: 0, total_seconds: 0, unique_tracks: 0 };

@@ -15,6 +15,7 @@ export const initDb = async () => {
       db = await SQLite.openDatabaseAsync('spotifYT.db');
 
       await db.execAsync(`
+        PRAGMA foreign_keys = ON;
         PRAGMA journal_mode = WAL;
 
         CREATE TABLE IF NOT EXISTS songs (

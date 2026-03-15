@@ -24,8 +24,22 @@ export default function HomeScreen({ currentSong, onSelectSong, refreshToken }) 
   const [topRatedSongs, setTopRatedSongs] = useState([]);
 
   useEffect(() => {
-    getRecentSongs().then(setRecentSongs).catch(console.error);
-    getTopRatedSongs().then(setTopRatedSongs).catch(console.error);
+    let active = true;
+
+    Promise.all([getRecentSongs(), getTopRatedSongs()])
+      .then(([recent, topRated]) => {
+        if (!active) {
+          return;
+        }
+
+        setRecentSongs(recent);
+        setTopRatedSongs(topRated);
+      })
+      .catch(console.error);
+
+    return () => {
+      active = false;
+    };
   }, [refreshToken]);
 
   return (

@@ -3,7 +3,17 @@
 Portfolio project with two parts:
 
 - `spotifYT-mobile`: Expo React Native client
-- `spotifYT-backend`: Node/Express backend for YouTube search and media processing
+- `spotifYT-backend`: local Node/Express backend for YouTube search and media processing
+
+## Recommended setup
+
+This project is intended to run with a local backend on your laptop and the mobile app on your phone over the same network.
+
+Why:
+
+- `yt-dlp` is more reliable from a home machine than from public cloud IPs
+- downloaded media is saved to the phone for offline playback
+- playlists, ratings, and listening stats live in on-device SQLite
 
 ## Local development
 
@@ -20,19 +30,17 @@ Mobile:
 ```bash
 cd spotifYT-mobile
 npm install
-EXPO_PUBLIC_BACKEND_URL=http://YOUR-LAN-IP:3000 npx expo start
+npx expo start -c
 ```
 
-## Render hosting
+Set `EXPO_PUBLIC_BACKEND_URL` in `spotifYT-mobile/.env` to your laptop LAN address, for example:
 
-The backend is prepared for Render with:
+```env
+EXPO_PUBLIC_BACKEND_URL=http://192.168.x.x:3000
+```
 
-- `/render.yaml`
-- `spotifYT-backend/Dockerfile`
-- `spotifYT-backend/.dockerignore`
+## Notes
 
-Notes:
-
-- The mobile app is not hosted on Render. Build and share it separately with Expo/EAS.
-- Free Render is enough for a portfolio demo, but the service will sleep after inactivity and wake slowly.
-- The backend uses temporary files only. Final media is saved on the phone after download.
+- Downloaded media is saved on the phone for offline playback.
+- Search and downloading require the laptop backend to be reachable on the same network.
+- This repo is intentionally set up for local backend use, not public hosting.

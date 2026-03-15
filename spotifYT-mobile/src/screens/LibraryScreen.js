@@ -52,11 +52,17 @@ export default function LibraryScreen({ currentSong, onLibraryChanged, onSelectS
       return;
     }
 
+    let active = true;
+
     const loadData = async () => {
       const [playlistRows, songRows] = await Promise.all([
         getPlaylists(),
         getSongs({ format: filter, playlistId: selectedPlaylistId }),
       ]);
+
+      if (!active) {
+        return;
+      }
 
       setPlaylists(playlistRows);
       setSongs(songRows);
@@ -64,10 +70,19 @@ export default function LibraryScreen({ currentSong, onLibraryChanged, onSelectS
       const membershipEntries = await Promise.all(
         songRows.map(async (song) => [song.id, await getSongPlaylistIds(song.id)])
       );
+
+      if (!active) {
+        return;
+      }
+
       setSongPlaylistIds(Object.fromEntries(membershipEntries));
     };
 
     loadData().catch(console.error);
+
+    return () => {
+      active = false;
+    };
   }, [filter, isFocused, refreshToken, selectedPlaylistId]);
 
   const selectedPlaylistName = useMemo(
