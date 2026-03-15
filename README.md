@@ -39,6 +39,24 @@ Set `EXPO_PUBLIC_BACKEND_URL` in `spotifYT-mobile/.env` to your laptop LAN addre
 EXPO_PUBLIC_BACKEND_URL=http://192.168.x.x:3000
 ```
 
+## Screenshots
+
+| Home | Search |
+| --- | --- |
+| ![Home](./screenshots/home.jpg) | ![Search](./screenshots/search.jpg) |
+
+| Collection | Player (MP3) |
+| --- | --- |
+| ![Collection](./screenshots/collection.jpg) | ![Player MP3](./screenshots/player-mp3.jpg) |
+
+| Player (MP4) | Wrapped |
+| --- | --- |
+| ![Player MP4](./screenshots/player-mp4.jpg) | ![Wrapped overview](./screenshots/wrapped-overview.jpg) |
+
+| Wrapped details | Home library highlights |
+| --- | --- |
+| ![Wrapped details](./screenshots/wrapped-details.jpg) | ![Home highlights](./screenshots/home-highlights.jpg) |
+
 ## Notes
 
 - Downloaded media is saved on the phone for offline playback.
