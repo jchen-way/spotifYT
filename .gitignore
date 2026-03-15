@@ -1,0 +1,12 @@
+node_modules
+*/node_modules
+.DS_Store
+*.log
+.agents/
+.env
+*.env
+!.env.example
+spotifYT-mobile/.expo
+spotifYT-mobile/dist
+spotifYT-mobile/web-build
+spotifYT-mobile/spotifYT.db

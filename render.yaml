@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: spotifyt-backend
+    runtime: docker
+    plan: free
+    rootDir: spotifYT-backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
